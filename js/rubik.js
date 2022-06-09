@@ -1,7 +1,8 @@
 // Configs
-var primaryColor = "orange";
-var secondaryColor = "gray";
+var primaryColor = "#c94802";
+var secondaryColor = "lightgray";
 var turnDuration = 200;
+var scaleFactor = 0.4;
 
 Array.prototype.clone = function () {
   var c = [];
@@ -253,11 +254,11 @@ Rubik.prototype.init = function () {
   this._node = OZ.DOM.elm("div", {
     position: "absolute",
     left: "50%",
-    top: "55%",
+    top: "50%",
     width: "0px",
     height: "0px"
   });
-  document.body.appendChild(this._node);
+  document.getElementById("logo-root").appendChild(this._node);
 
   OZ.CSS3.set(document.body, "perspective", "1460px");
   OZ.CSS3.set(this._node, "transform-style", "preserve-3d");
@@ -287,7 +288,9 @@ Rubik.prototype._update = function () {
   OZ.CSS3.set(
     this._node,
     "transform",
-    "translateZ(" +
+    "scale(" +
+      scaleFactor +
+      ") translateZ(" +
       (-Face.SIZE / 2 - Face.SIZE) +
       "px) " +
       this._rotation.toRotation() +
